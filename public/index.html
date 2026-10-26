@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Autonomous Booking Agent | Live Remote Chrome</title>
+  <meta name="description" content="Production-grade Autonomous Ticket Booking Agent for RedBus, BookMyShow, and IRCTC with split-screen conversational interface and live remote Chrome viewport.">
+  
+  <!-- Modern Google Fonts: Inter, Outfit, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient backdrop lights (Linear/Vercel style) -->
+  <div class="ambient-glow glow-primary"></div>
+  <div class="ambient-glow glow-accent"></div>
+
+  <div class="app-shell">
+    
+    <!-- ============================================== -->
+    <!-- GLOBAL TOPBAR: MINIMALIST PRODUCT HEADER       -->
+    <!-- ============================================== -->
+    <header class="global-topbar">
+      <div class="topbar-left">
+        <div class="brand-glyph">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="brand-title-wrap">
+          <span class="brand-name">Antigravity Agent</span>
+          <span class="brand-divider">/</span>
+          <span class="brand-project">Autonomous Ticket Booking Engine</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <!-- Live Engine Status Badge -->
+        <div class="engine-status-pill" id="engineStatusPill">
+          <span class="status-pulse-dot"></span>
+          <span id="engineStatusLabel">Agent Engine Idle</span>
+        </div>
+
+        <!-- Global Stop Button -->
+        <button type="button" class="action-btn-danger" id="globalStopBtn" title="Emergency Stop Browser Process">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+          </svg>
+          <span>Stop</span>
+        </button>
+
+        <!-- Light / Dark Mode Switcher -->
+        <button type="button" class="theme-icon-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ============================================== -->
+    <!-- SPLIT-SCREEN WORKSPACE: 45% LEFT / 55% RIGHT   -->
+    <!-- ============================================== -->
+    <main class="split-workspace">
+      
+      <!-- ============================================== -->
+      <!-- 45% LEFT: CONVERSATIONAL AGENT & DYNAMIC CARD  -->
+      <!-- ============================================== -->
+      <section class="left-agent-panel">
+        
+        <!-- Chat History Scroll Container -->
+        <div class="chat-thread-container" id="chatThreadContainer">
+          
+          <!-- Bot Greeting Message -->
+          <div class="chat-row agent">
+            <div class="agent-avatar">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h2a3 3 0 0 1 3 3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1v1a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-1H3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1v-2a3 3 0 0 1 3-3h2V5.72A2 2 0 0 1 10 4a2 2 0 0 1 2-2z"></path>
+              </svg>
+            </div>
+            <div class="bubble-content">
+              <p>Welcome! I'm your <strong>Autonomous Booking Agent</strong>. I control a live Google Chrome instance via Playwright to autonomously navigate portals, extract seating layouts, and stage ticket checkout in real time.</p>
+              <p class="bubble-subtext">Choose your target platform to configure parameters:</p>
+
+              <!-- 3 Sleek Brand Selector Pills -->
+              <div class="platform-pills-row" id="platformPillsRow">
+                <button type="button" class="brand-pill redbus active" data-platform="redbus">
+                  <span class="pill-dot red"></span>
+                  <span class="pill-icon">🚌</span>
+                  <span class="pill-title">RedBus</span>
+                  <span class="pill-tag">Buses</span>
+                </button>
+
+                <button type="button" class="brand-pill bms" data-platform="bms">
+                  <span class="pill-dot coral"></span>
+                  <span class="pill-icon">🎬</span>
+                  <span class="pill-title">BookMyShow</span>
+                  <span class="pill-tag">Cinemas</span>
+                </button>
+
+                <button type="button" class="brand-pill irctc" data-platform="irctc">
+                  <span class="pill-dot blue"></span>
+                  <span class="pill-icon">🚆</span>
+                  <span class="pill-title">IRCTC</span>
+                  <span class="pill-tag">Railways</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- DYNAMIC INLINE CARD WRAPPER (Renders ONLY the active platform) -->
+          <div class="dynamic-card-mount" id="dynamicCardMount">
+            
+            <!-- 1. REDBUS DYNAMIC FORM CARD -->
+            <div class="platform-config-card redbus-theme" id="formCardRedbus">
+              <div class="card-header-bar">
+                <div class="card-brand-tag">
+                  <span class="brand-symbol">🚌</span>
+                  <strong>RedBus Booking Configuration</strong>
+                </div>
+                <span class="active-mode-badge">Live Chrome Headed</span>
+              </div>
+
+              <div class="card-body-form">
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Origin (--from)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">📍</span>
+                      <input type="text" id="rbFrom" value="Mumbai" placeholder="Origin City">
+                    </div>
+                  </div>
+                  <div class="form-control">
+                    <label>Destination (--to)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">🏁</span>
+                      <input type="text" id="rbTo" value="Pune" placeholder="Destination City">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Journey Date (--date)</label>
+                    <select id="rbDate" class="sleek-select">
+                      <option value="Tomorrow" selected>📅 Tomorrow (Fast Filling)</option>
+                      <option value="Today">Today (Night Sleeper)</option>
+                      <option value="This Friday">This Friday</option>
+                      <option value="This Saturday">This Saturday</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label>Coach Operator Preference</label>
+                    <select id="rbOperator" class="sleek-select">
+                      <option value="Zingbus Plus Electric & Luxury" selected>Zingbus Plus (AC Sleeper 2+1)</option>
+                      <option value="IntrCity SmartBus Executive">IntrCity SmartBus (BharatBenz)</option>
+                      <option value="Purple Travels Starline">Purple Travels (Scania Multi-Axle)</option>
+                      <option value="VRL Travels Grand Luxuria">VRL Travels (Volvo Multi-Axle)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Interactive Mini Deck Seat Picker -->
+                <div class="mini-deck-container">
+                  <div class="mini-deck-header">
+                    <span>Interactive Sleeper Berth Picker (--seats)</span>
+                    <strong class="selected-seats-badge" id="rbSeatsBadge">Seats: L1, L2</strong>
+                  </div>
+                  <div class="mini-deck-scroll">
+                    <div class="deck-level">
+                      <span class="deck-title">Lower Deck</span>
+                      <div class="berth-grid" id="rbLowerDeckGrid">
+                        <button type="button" class="berth-pill selected" data-seat="L1">L1</button>
+                        <button type="button" class="berth-pill selected" data-seat="L2">L2</button>
+                        <button type="button" class="berth-pill" data-seat="L3">L3</button>
+                        <button type="button" class="berth-pill booked" disabled>L4 (Sold)</button>
+                        <button type="button" class="berth-pill" data-seat="L5">L5</button>
+                        <button type="button" class="berth-pill" data-seat="L6">L6</button>
+                      </div>
+                    </div>
+                    <div class="deck-level">
+                      <span class="deck-title">Upper Deck</span>
+                      <div class="berth-grid" id="rbUpperDeckGrid">
+                        <button type="button" class="berth-pill" data-seat="U1">U1</button>
+                        <button type="button" class="berth-pill" data-seat="U2">U2</button>
+                        <button type="button" class="berth-pill booked" disabled>U3 (Sold)</button>
+                        <button type="button" class="berth-pill" data-seat="U4">U4</button>
+                        <button type="button" class="berth-pill" data-seat="U5">U5</button>
+                        <button type="button" class="berth-pill" data-seat="U6">U6</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Boarding & Dropping Point Selection -->
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Boarding Point (--boarding)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">🚏</span>
+                      <input type="text" id="rbBoarding" value="Wageshwar Parking Yard" placeholder="e.g. Wageshwar / Viman Nagar / Wakad">
+                    </div>
+                  </div>
+                  <div class="form-control">
+                    <label>Dropping Point (--dropping)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">🏁</span>
+                      <input type="text" id="rbDropping" value="Chhatrapati Square" placeholder="e.g. Chhatrapati Square / Samruddhi">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Contact & Passenger Info Section -->
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Contact Phone (--phone)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">📱</span>
+                      <input type="tel" id="rbPhone" value="9820198201" placeholder="Mobile Number">
+                    </div>
+                  </div>
+                  <div class="form-control">
+                    <label>Contact Email (--email)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">📧</span>
+                      <input type="email" id="rbEmail" value="rahul.booking@gmail.com" placeholder="Email Address">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Passenger 1 Name (--name)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">👤</span>
+                      <input type="text" id="rbPassengerName" value="Rahul Sharma" placeholder="Full Name">
+                    </div>
+                  </div>
+                  <div class="form-control">
+                    <label>Age & Gender</label>
+                    <div style="display: flex; gap: 8px;">
+                      <input type="number" id="rbPassengerAge" value="28" min="5" max="100" style="width: 70px; padding: 9px 10px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: var(--text-main); font-size: 13px;">
+                      <select id="rbPassengerGender" class="sleek-select" style="flex: 1;">
+                        <option value="Male" selected>Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live Syntax-Highlighted CLI Preview Bar -->
+                <div class="cli-preview-strip">
+                  <div class="cli-strip-top">
+                    <span class="cli-label">LIVE CLI COMMAND PREVIEW:</span>
+                    <button type="button" class="copy-cmd-btn" id="copyRbCmdBtn" title="Copy CLI command to clipboard">Copy</button>
+                  </div>
+                  <code class="cli-code-text" id="rbCliPreview">node redbus_playwright.js --from="Pune" --to="Nagpur" --date="Tomorrow" --seats=L1,L2 --boarding="Wageshwar" --dropping="Chhatrapati Square"</code>
+                </div>
+
+                <!-- Action Button -->
+                <button type="button" class="execute-agent-btn redbus-btn" id="executeRbAgentBtn">
+                  <span class="play-icon">▶</span>
+                  <span>Spawn Live Chrome for RedBus</span>
+                  <span class="shortcut-pill">Enter ↵</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. BOOKMYSHOW DYNAMIC FORM CARD -->
+            <div class="platform-config-card bms-theme" id="formCardBms" style="display: none;">
+              <div class="card-header-bar">
+                <div class="card-brand-tag">
+                  <span class="brand-symbol">🎬</span>
+                  <strong>BookMyShow Cinema Configuration</strong>
+                </div>
+                <span class="active-mode-badge bms-badge">Live Chrome Headed</span>
+              </div>
+
+              <div class="card-body-form">
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>City (--city)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">📍</span>
+                      <input type="text" id="bmsCity" value="Mumbai" placeholder="City name">
+                    </div>
+                  </div>
+                  <div class="form-control">
+                    <label>Movie / Show (--show)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">🔍</span>
+                      <input type="text" id="bmsMovie" value="Heart of the Beast" placeholder="Movie title">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Date (--date)</label>
+                    <select id="bmsDate" class="sleek-select">
+                      <option value="Tomorrow" selected>📅 Tomorrow (Prime Show)</option>
+                      <option value="Today">Today (Late Night)</option>
+                      <option value="This Weekend">This Weekend</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label>Format & Showtime</label>
+                    <select id="bmsFormat" class="sleek-select">
+                      <option value="2D - 05:30 PM" selected>2D • 05:30 PM (Prime)</option>
+                      <option value="IMAX 2D - 08:45 PM">IMAX 2D • 08:45 PM</option>
+                      <option value="4DX 3D - 02:15 PM">4DX 3D • 02:15 PM</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Seating Category</label>
+                    <select id="bmsCategory" class="sleek-select">
+                      <option value="Gold (₹350)" selected>Gold Tier (₹350)</option>
+                      <option value="Club (₹250)">Club Tier (₹250)</option>
+                      <option value="Executive (₹180)">Executive Tier (₹180)</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label>Seat Count Stepper (--seats)</label>
+                    <div class="stepper-wrap">
+                      <button type="button" class="step-btn" id="bmsMinusBtn">−</button>
+                      <span class="step-val" id="bmsSeatVal">2</span>
+                      <button type="button" class="step-btn" id="bmsPlusBtn">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live Syntax-Highlighted CLI Preview Bar -->
+                <div class="cli-preview-strip">
+                  <div class="cli-strip-top">
+                    <span class="cli-label">LIVE CLI COMMAND PREVIEW:</span>
+                    <button type="button" class="copy-cmd-btn" id="copyBmsCmdBtn" title="Copy CLI command to clipboard">Copy</button>
+                  </div>
+                  <code class="cli-code-text" id="bmsCliPreview">node index.js --city="Mumbai" --show="Heart of the Beast" --date="Tomorrow" --seats=2</code>
+                </div>
+
+                <!-- Action Button -->
+                <button type="button" class="execute-agent-btn bms-btn" id="executeBmsAgentBtn">
+                  <span class="play-icon">▶</span>
+                  <span>Spawn Live Chrome for BookMyShow</span>
+                  <span class="shortcut-pill">Enter ↵</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. IRCTC DYNAMIC FORM CARD -->
+            <div class="platform-config-card irctc-theme" id="formCardIrctc" style="display: none;">
+              <div class="card-header-bar">
+                <div class="card-brand-tag">
+                  <span class="brand-symbol">🚆</span>
+                  <strong>IRCTC Railway Reservation Configuration</strong>
+                </div>
+                <span class="active-mode-badge irctc-badge">Autonomous PNR Hold</span>
+              </div>
+
+              <div class="card-body-form">
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Source Station (--from)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">🚉</span>
+                      <input type="text" id="irctcFrom" value="CSMT" placeholder="Station code (e.g. CSMT)">
+                    </div>
+                  </div>
+                  <div class="form-control">
+                    <label>Destination Station (--to)</label>
+                    <div class="input-icon-wrap">
+                      <span class="icon">🏁</span>
+                      <input type="text" id="irctcTo" value="PUNE" placeholder="Station code (e.g. PUNE)">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Journey Date (--date)</label>
+                    <select id="irctcDate" class="sleek-select">
+                      <option value="Tomorrow" selected>📅 Tomorrow (Deccan Queen #12123)</option>
+                      <option value="Today">Today (Tatkal Booking)</option>
+                      <option value="This Friday">This Friday</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label>Coach Class (--class)</label>
+                    <select id="irctcClass" class="sleek-select">
+                      <option value="3A" selected>3A (AC 3-Tier)</option>
+                      <option value="2A">2A (AC 2-Tier)</option>
+                      <option value="1A">1A (AC First Class)</option>
+                      <option value="SL">SL (Sleeper Class)</option>
+                      <option value="CC">CC (AC Chair Car)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid-2-col">
+                  <div class="form-control">
+                    <label>Booking Quota (--quota)</label>
+                    <select id="irctcQuota" class="sleek-select">
+                      <option value="General" selected>General Quota (GN)</option>
+                      <option value="Tatkal">Tatkal Quota (TQ)</option>
+                      <option value="Premium Tatkal">Premium Tatkal (PT)</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label>Berth Preference (--berth)</label>
+                    <select id="irctcBerth" class="sleek-select">
+                      <option value="Lower" selected>Lower Berth</option>
+                      <option value="Side Lower">Side Lower (SL)</option>
+                      <option value="Window">Window Seat</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Live Syntax-Highlighted CLI Preview Bar -->
+                <div class="cli-preview-strip">
+                  <div class="cli-strip-top">
+                    <span class="cli-label">LIVE CLI COMMAND PREVIEW:</span>
+                    <button type="button" class="copy-cmd-btn" id="copyIrctcCmdBtn" title="Copy CLI command to clipboard">Copy</button>
+                  </div>
+                  <code class="cli-code-text" id="irctcCliPreview">node irctc_workflow.js --from="CSMT" --to="PUNE" --date="Tomorrow" --class="3A" --quota="TQ"</code>
+                </div>
+
+                <!-- Action Button -->
+                <button type="button" class="execute-agent-btn irctc-btn" id="executeIrctcAgentBtn">
+                  <span class="play-icon">▶</span>
+                  <span>Spawn Autonomous IRCTC Agent</span>
+                  <span class="shortcut-pill">Enter ↵</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Chat Input Field at the bottom of 45% panel -->
+        <div class="chat-input-bottom-bar">
+          <form id="agentChatForm" class="chat-form-wrap">
+            <input type="text" id="agentChatInput" placeholder="Ask agent or type (e.g. 'book bus to Pune tomorrow', 'book dune in mumbai')..." autocomplete="off">
+            <button type="submit" class="send-prompt-btn" aria-label="Send query">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+      </section>
+
+      <!-- ============================================== -->
+      <!-- 55% RIGHT: SINGLE REMOTE CHROME VIEWPORT       -->
+      <!-- ============================================== -->
+      <section class="right-viewport-panel">
+        
+        <!-- Remote Browser Window Shell -->
+        <div class="remote-chrome-window">
+          
+          <!-- Top Bar: Mac Dots + Status Badge + URL Bar + Take Control -->
+          <div class="remote-topbar">
+            <div class="window-controls">
+              <span class="dot close"></span>
+              <span class="dot minimize"></span>
+              <span class="dot maximize"></span>
+            </div>
+
+            <div class="remote-status-badge" id="viewportStatusBadge">
+              <span class="badge-dot" id="badgeDot"></span>
+              <span id="badgeStatusText">Idle</span>
+            </div>
+
+            <!-- Virtual Browser Omnibox -->
+            <div class="remote-omnibox">
+              <span class="lock-icon">🔒</span>
+              <span class="url-text" id="remoteUrlDisplay">https://www.redbus.in/bus-tickets/mumbai-to-pune</span>
+              <span class="remote-fps">60 FPS</span>
+            </div>
+
+            <div class="remote-actions">
+              <button type="button" class="take-control-btn" id="takeControlBtn" title="Inspect real Chrome window">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path>
+                </svg>
+                <span>Take Control</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Execution Pipeline Step Indicator Strip -->
+          <div class="pipeline-step-bar" id="pipelineStepBar">
+            <div class="pipeline-step active" id="pipeStep1">
+              <span class="step-idx">1</span>
+              <span class="step-name">Route/Show Search</span>
+            </div>
+            <div class="pipe-chevron">›</div>
+            <div class="pipeline-step" id="pipeStep2">
+              <span class="step-idx">2</span>
+              <span class="step-name">Seat Map Extraction</span>
+            </div>
+            <div class="pipe-chevron">›</div>
+            <div class="pipeline-step" id="pipeStep3">
+              <span class="step-idx">3</span>
+              <span class="step-name">Auto-Selecting Seats</span>
+            </div>
+            <div class="pipe-chevron">›</div>
+            <div class="pipeline-step" id="pipeStep4">
+              <span class="step-idx">4</span>
+              <span class="step-name">Payment Hand-off</span>
+            </div>
+          </div>
+
+          <!-- Main Viewport Canvas Container -->
+          <div class="remote-viewport-canvas" id="remoteViewportCanvas">
+            
+            <!-- Visual Cursor Follower Overlay (Simulates Playwright mouse tracking) -->
+            <div class="viewport-cursor" id="viewportCursor">
+              <div class="cursor-pointer"></div>
+              <div class="cursor-ripple" id="cursorRipple"></div>
+            </div>
+
+            <!-- 1. REDBUS VIEWPORT SCREEN -->
+            <div class="platform-viewport-screen redbus-screen active" id="screenRedbus">
+              <div class="mock-portal-header">
+                <div class="portal-brand">
+                  <span class="rb-logo-text">redBus</span>
+                  <span class="portal-route" id="vpRbRoute">Mumbai ➔ Pune</span>
+                </div>
+                <div class="portal-meta">
+                  <span class="buses-found-tag">141 Buses Available</span>
+                </div>
+              </div>
+
+              <div class="bus-search-deck-card">
+                <div class="bus-card-summary">
+                  <div class="bus-operator-title">Zingbus Plus Electric & Luxury</div>
+                  <div class="bus-time-badge">06:30 AM ➔ 10:15 AM (3h 45m) • ⭐ 4.8 / 5.0</div>
+                </div>
+
+                <!-- Bus Sleeper Deck Layout Display -->
+                <div class="live-deck-layout">
+                  <div class="deck-steering-indicator">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <line x1="12" y1="2" x2="12" y2="9" stroke="currentColor" stroke-width="2"></line>
+                    </svg>
+                    <span>FRONT</span>
+                  </div>
+
+                  <div class="live-berths-row">
+                    <div class="deck-col">
+                      <span class="deck-lbl">Lower Deck</span>
+                      <div class="berth-strip">
+                        <div class="live-berth active-selected" id="vpSeatL1">
+                          <span class="b-num">L1</span><span class="b-price">₹499</span>
+                        </div>
+                        <div class="live-berth active-selected" id="vpSeatL2">
+                          <span class="b-num">L2</span><span class="b-price">₹499</span>
+                        </div>
+                        <div class="live-berth" id="vpSeatL3">
+                          <span class="b-num">L3</span><span class="b-price">₹499</span>
+                        </div>
+                        <div class="live-berth sold"><span class="b-num">L4</span></div>
+                      </div>
+                    </div>
+
+                    <div class="deck-col">
+                      <span class="deck-lbl">Upper Deck</span>
+                      <div class="berth-strip">
+                        <div class="live-berth" id="vpSeatU1">
+                          <span class="b-num">U1</span><span class="b-price">₹550</span>
+                        </div>
+                        <div class="live-berth" id="vpSeatU2">
+                          <span class="b-num">U2</span><span class="b-price">₹550</span>
+                        </div>
+                        <div class="live-berth sold"><span class="b-num">U3</span></div>
+                        <div class="live-berth" id="vpSeatU4">
+                          <span class="b-num">U4</span><span class="b-price">₹550</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. BOOKMYSHOW VIEWPORT SCREEN -->
+            <div class="platform-viewport-screen bms-screen" id="screenBms">
+              <div class="mock-portal-header">
+                <div class="portal-brand">
+                  <span class="bms-logo-text">bookmyshow</span>
+                  <span class="portal-route" id="vpBmsTitle">Heart of the Beast</span>
+                </div>
+                <div class="portal-meta">
+                  <span class="buses-found-tag bms-tag">PVR ICON: Infiniti Mall</span>
+                </div>
+              </div>
+
+              <div class="bms-canvas-stage">
+                <!-- Cinema Screen Indicator -->
+                <div class="cinema-screen-indicator">
+                  <div class="screen-glow-line"></div>
+                  <div class="screen-caption">CINEMA SCREEN THIS WAY</div>
+                </div>
+
+                <!-- Cinema Seat Matrix -->
+                <div class="cinema-seat-matrix">
+                  <div class="seat-row-strip">
+                    <span class="row-tag">E</span>
+                    <span class="seat-cell">1</span><span class="seat-cell">2</span>
+                    <span class="seat-aisle"></span>
+                    <span class="seat-cell">3</span><span class="seat-cell">4</span><span class="seat-cell">5</span>
+                    <span class="seat-aisle"></span>
+                    <span class="seat-cell active-bms" id="vpBmsSeat1">6</span>
+                    <span class="seat-cell active-bms" id="vpBmsSeat2">7</span>
+                  </div>
+                  <div class="seat-row-strip">
+                    <span class="row-tag">F</span>
+                    <span class="seat-cell">1</span><span class="seat-cell">2</span>
+                    <span class="seat-aisle"></span>
+                    <span class="seat-cell">3</span><span class="seat-cell">4</span><span class="seat-cell">5</span>
+                    <span class="seat-aisle"></span>
+                    <span class="seat-cell">6</span><span class="seat-cell">7</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. IRCTC VIEWPORT SCREEN -->
+            <div class="platform-viewport-screen irctc-screen" id="screenIrctc">
+              <div class="mock-portal-header">
+                <div class="portal-brand">
+                  <span class="irctc-logo-text">IRCTC e-Ticketing</span>
+                  <span class="portal-route" id="vpIrctcRoute">CSMT ➔ PUNE</span>
+                </div>
+                <div class="portal-meta">
+                  <span class="buses-found-tag irctc-tag">Train #12123 Deccan Queen</span>
+                </div>
+              </div>
+
+              <div class="irctc-reservation-card">
+                <div class="train-summary-header">
+                  <strong>Deccan Queen Superfast Express (12123)</strong>
+                  <span>Departs: 07:15 AM | Arrives: 10:25 AM</span>
+                </div>
+                <div class="berth-allotment-box">
+                  <span class="allotment-title">Auto-Allocated Berths (Class 3A • General Quota):</span>
+                  <div class="allotted-tags">
+                    <span class="a-pill">Coach B2: Berth 34 (Lower)</span>
+                    <span class="a-pill">Coach B2: Berth 35 (Middle)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PAYMENT STAGE HAND-OFF UI: ACTION REQUIRED BANNER -->
+            <div class="payment-handoff-banner" id="paymentHandoffBanner" style="display: none;">
+              <div class="handoff-content-group">
+                <div class="alert-pulse-circle">⚠️</div>
+                <div class="handoff-text-box">
+                  <h4>Action Required: Complete Payment</h4>
+                  <p id="handoffSubtext">Remote Chrome reached the Final Payment Gateway. Automation is paused awaiting checkout.</p>
+                </div>
+              </div>
+              <div class="handoff-cta-row">
+                <button type="button" class="open-gateway-modal-btn" id="openGatewayModalBtn">
+                  <span>Pay Now & Confirm Ticket</span>
+                  <span class="arrow-sym">→</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Collapsible Realtime Terminal Logs Drawer -->
+          <div class="terminal-drawer" id="terminalDrawer">
+            <div class="drawer-header" id="drawerHeaderToggle">
+              <div class="drawer-left">
+                <span class="drawer-icon">❯</span>
+                <span class="drawer-title">Live Process Output (stdout)</span>
+                <span class="stream-status" id="drawerStreamStatus">Connected</span>
+              </div>
+              <div class="drawer-right">
+                <button type="button" class="drawer-btn" id="clearLogsBtn">Clear</button>
+                <span class="drawer-chevron" id="drawerChevron">▲</span>
+              </div>
+            </div>
+
+            <div class="drawer-body" id="drawerTerminalBody">
+              <div class="terminal-row system">
+                <span class="t-time">00:00:00</span>
+                <span class="t-msg">[AGENT] Antigravity Autonomous Engine Ready. Configure inputs and click Execute.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- ============================================== -->
+    <!-- UNIFIED PAYMENT GATEWAY MODAL                  -->
+    <!-- ============================================== -->
+    <div class="modal-backdrop" id="paymentModalBackdrop">
+      <div class="payment-modal-card">
+        <div class="modal-top">
+          <div class="title-with-shield">
+            <div class="shield-circle">🛡️</div>
+            <div>
+              <h3>Unified Payment Gateway</h3>
+              <p>256-Bit SSL Encrypted Automated Staging Checkout</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-x" id="closePaymentModalX">&times;</button>
+        </div>
+
+        <div class="modal-split-body">
+          <!-- Left Summary Panel -->
+          <div class="fare-breakdown-col">
+            <div class="fare-card-meta">
+              <span class="service-pill" id="payServicePill">RedBus Booking</span>
+              <h4 id="payServiceTitle">Zingbus Plus Electric & Luxury</h4>
+              <p id="payServiceRoute">Mumbai ➔ Pune • 2 Berths • Tomorrow</p>
+            </div>
+
+            <div class="fare-breakdown-table">
+              <div class="row">
+                <span id="payBaseLabel">Base Ticket Fare</span>
+                <strong id="payBaseFare">₹998.00</strong>
+              </div>
+              <div class="row">
+                <span>Platform Convenience Fee</span>
+                <strong id="payConvenience">₹50.00</strong>
+              </div>
+              <div class="row">
+                <span>Integrated GST (Govt. Taxes)</span>
+                <strong id="payGst">₹52.00</strong>
+              </div>
+              <div class="row discount-row" id="payDiscountRow" style="display: none;">
+                <span>Promo Discount (<span id="payPromoCode"></span>)</span>
+                <strong class="green-text" id="payDiscountVal">-₹50.00</strong>
+              </div>
+            </div>
+
+            <div class="promo-entry-bar">
+              <input type="text" id="modalPromoInput" placeholder="PROMO (FIRST50, OMNIPASS)">
+              <button type="button" id="modalApplyPromoBtn">Apply</button>
+            </div>
+            <div class="promo-alert" id="modalPromoAlert"></div>
+
+            <div class="total-payable-bar">
+              <div>
+                <span class="tot-label">Total Amount Payable</span>
+                <small>All taxes & fees included</small>
+              </div>
+              <div class="grand-total-price" id="payGrandTotal">₹1100.00</div>
+            </div>
+          </div>
+
+          <!-- Right Methods Panel -->
+          <div class="payment-methods-col">
+            <div class="methods-tab-nav">
+              <button type="button" class="m-tab active" data-tab="upi">⚡ UPI QR / App</button>
+              <button type="button" class="m-tab" data-tab="cards">💳 Cards</button>
+              <button type="button" class="m-tab" data-tab="netbanking">🏛️ Net Banking</button>
+            </div>
+
+            <div class="methods-tab-content">
+              <!-- UPI TAB -->
+              <div class="tab-view active" id="view-upi">
+                <div class="upi-qr-card">
+                  <div class="qr-code-frame">
+                    <svg viewBox="0 0 100 100" width="130" height="130">
+                      <rect width="100" height="100" fill="#ffffff" rx="6"></rect>
+                      <rect x="10" y="10" width="24" height="24" fill="#0F172A" rx="3"></rect>
+                      <rect x="14" y="14" width="16" height="16" fill="#ffffff"></rect>
+                      <rect x="17" y="17" width="10" height="10" fill="#0F172A"></rect>
+                      <rect x="66" y="10" width="24" height="24" fill="#0F172A" rx="3"></rect>
+                      <rect x="70" y="14" width="16" height="16" fill="#ffffff"></rect>
+                      <rect x="73" y="17" width="10" height="10" fill="#0F172A"></rect>
+                      <rect x="10" y="66" width="24" height="24" fill="#0F172A" rx="3"></rect>
+                      <rect x="14" y="70" width="16" height="16" fill="#ffffff"></rect>
+                      <rect x="17" y="73" width="10" height="10" fill="#0F172A"></rect>
+                      <rect x="42" y="14" width="6" height="6" fill="#0F172A"></rect>
+                      <rect x="52" y="14" width="6" height="12" fill="#0F172A"></rect>
+                      <rect x="42" y="26" width="12" height="6" fill="#0F172A"></rect>
+                      <rect x="14" y="42" width="6" height="16" fill="#0F172A"></rect>
+                      <rect x="26" y="48" width="12" height="6" fill="#0F172A"></rect>
+                      <rect x="46" y="44" width="10" height="10" fill="#6366F1" rx="2"></rect>
+                      <rect x="64" y="44" width="16" height="6" fill="#0F172A"></rect>
+                      <rect x="74" y="56" width="12" height="10" fill="#0F172A"></rect>
+                      <rect x="42" y="66" width="8" height="14" fill="#0F172A"></rect>
+                      <rect x="56" y="72" width="14" height="8" fill="#0F172A"></rect>
+                      <rect x="76" y="74" width="10" height="10" fill="#0F172A"></rect>
+                    </svg>
+                    <div class="qr-laser-scanner"></div>
+                  </div>
+                  <span class="qr-expire-note">Expires in <strong id="qrTimer">04:45</strong></span>
+                  <div class="vpa-quick-field">
+                    <input type="text" id="vpaHandleInput" value="user.booking@okaxis" placeholder="username@upi">
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARDS TAB -->
+              <div class="tab-view" id="view-cards">
+                <div class="virtual-credit-card">
+                  <div class="v-card-chip"></div>
+                  <div class="v-card-num">•••• •••• •••• 4242</div>
+                  <div class="v-card-bottom">
+                    <div>
+                      <small>CARD HOLDER</small>
+                      <strong>RAHUL SHARMA</strong>
+                    </div>
+                    <div>
+                      <small>EXPIRES</small>
+                      <strong>08/29</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- NETBANKING TAB -->
+              <div class="tab-view" id="view-netbanking">
+                <div class="bank-tile-grid">
+                  <div class="bank-tile active"><strong>HDFC</strong><span>HDFC Bank</span></div>
+                  <div class="bank-tile"><strong>SBI</strong><span>State Bank</span></div>
+                  <div class="bank-tile"><strong>ICICI</strong><span>ICICI Bank</span></div>
+                  <div class="bank-tile"><strong>AXIS</strong><span>Axis Bank</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="final-checkout-action">
+              <button type="button" class="pay-confirm-submit-btn" id="payConfirmSubmitBtn">
+                <span>🔒 Pay & Confirm Autonomous Booking</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- FINAL BOOKING CONFIRMATION & E-TICKET MODAL    -->
+    <!-- ============================================== -->
+    <div class="modal-backdrop" id="ticketModalBackdrop">
+      <div class="ticket-boarding-card">
+        <div class="ticket-celebration-strip">
+          <div class="check-badge">✓</div>
+          <h3>Autonomous Booking Confirmed!</h3>
+          <p>Ticket reserved and staged through the Playwright browser pipeline.</p>
+        </div>
+
+        <div class="boarding-pass-wrap">
+          <div class="pass-header" id="ticketHeaderBanner">
+            <span class="pass-platform-badge" id="ticketPlatformBadge">RedBus Verified</span>
+            <span class="pass-pnr" id="ticketPnrDisplay">PNR: RB-849201</span>
+          </div>
+
+          <div class="pass-grid">
+            <div class="p-item">
+              <span class="lbl">JOURNEY / SHOW</span>
+              <strong id="ticketTitleDisplay">Mumbai ➔ Pune</strong>
+            </div>
+            <div class="p-item">
+              <span class="lbl">DATE & TIME</span>
+              <strong id="ticketDateDisplay">Tomorrow • 06:30 AM</strong>
+            </div>
+            <div class="p-item">
+              <span class="lbl">SEATS ALLOCATED</span>
+              <strong class="seat-accent" id="ticketSeatsDisplay">Berths: L1, L2</strong>
+            </div>
+            <div class="p-item">
+              <span class="lbl">TOTAL AMOUNT PAID</span>
+              <strong id="ticketPaidDisplay">₹1100.00 (PAID)</strong>
+            </div>
+          </div>
+
+          <div class="pass-footer">
+            <div class="mock-barcode-bar"></div>
+            <span class="ticket-status-stamp">OFFICIAL BOARDING PASS</span>
+          </div>
+        </div>
+
+        <div class="ticket-actions-bar">
+          <button type="button" class="ticket-btn print" id="printPassBtn">🖨️ Print Ticket</button>
+          <button type="button" class="ticket-btn done" id="doneTicketBtn">Book Another Ticket</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

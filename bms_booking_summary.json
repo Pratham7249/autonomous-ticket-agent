@@ -1,0 +1,74 @@
+{
+  "platform": "BookMyShow",
+  "sessionId": "BMSSESS_9L0UB1HP6",
+  "timestamp": "2026-10-25T18:07:22.681Z",
+  "city": "Mumbai",
+  "movie": {
+    "id": "bms-mov-01",
+    "title": "Heart of the Beast",
+    "starring": "Brad Pitt, Marion Cotillard",
+    "genre": "Action, Mystery, Thriller",
+    "language": "English (2D, IMAX 2D)",
+    "duration": "2h 18m"
+  },
+  "theater": "PVR ICON: Infiniti Mall, Versova",
+  "showtime": "Tomorrow - 05:30 PM",
+  "seatsSelected": 2,
+  "seats": [
+    "E7",
+    "E8"
+  ],
+  "fare": {
+    "baseFare": 700,
+    "perSeatPrice": 350,
+    "convenienceFee": 85,
+    "gst": 15,
+    "totalAmountPayable": 800,
+    "currency": "INR"
+  },
+  "guestContact": {
+    "email": "guest.booking@gmail.com",
+    "mobile": "9820198201"
+  },
+  "availablePaymentOptions": [
+    "UPI QR & VPA (Google Pay / PhonePe / Paytm / BHIM)",
+    "Debit / Credit Card (Visa, Mastercard, RuPay)",
+    "Net Banking (SBI, HDFC, ICICI, Axis, Kotak)",
+    "Mobile Wallets (Paytm, Amazon Pay, Mobikwik)",
+    "Pay Later (Simpl, LazyPay)"
+  ],
+  "status": "Staged at Final Payment Options Page",
+  "logs": [
+    "[11:37:22 pm] ====================================================",
+    "[11:37:22 pm]        BOOKMYSHOW AUTONOMOUS BOOKING RUNNER         ",
+    "[11:37:22 pm] ====================================================",
+    "[11:37:22 pm] 📍 City:          Mumbai",
+    "[11:37:22 pm] 🎬 Movie / Show:  Heart of the Beast",
+    "[11:37:22 pm] 🏛️ Theater:       PVR ICON: Infiniti Mall, Versova",
+    "[11:37:22 pm] 📅 Date & Time:   Tomorrow @ 05:30 PM",
+    "[11:37:22 pm] 💺 Selected Seats: E7, E8",
+    "[11:37:22 pm] 📧 Guest Contact: guest.booking@gmail.com | 9820198201",
+    "[11:37:22 pm] ====================================================",
+    "[11:37:22 pm] [1/7] SETUP: Validating city endpoint & session headers...",
+    "[11:37:22 pm] ✅ City confirmed: Mumbai",
+    "[11:37:22 pm] [2/7] SEARCH: Locating \"Heart of the Beast\" in active theatrical releases...",
+    "[11:37:22 pm] ✅ Movie found: Heart of the Beast (English (2D, IMAX 2D))",
+    "[11:37:22 pm] [3/7] THEATER & SHOWTIME: Selecting format (2D) & date tab...",
+    "[11:37:22 pm]       Assigned Theater: PVR ICON: Infiniti Mall, Versova",
+    "[11:37:22 pm]       Showtime: 05:30 PM (Tomorrow)",
+    "[11:37:22 pm] [4/7] SEAT LOCK: Inspecting Konva Canvas coordinates...",
+    "[11:37:22 pm]       Acquiring lock on seats: [E7, E8]",
+    "[11:37:22 pm] [5/7] FARE BREAKDOWN:",
+    "[11:37:22 pm]       Ticket Fare (2 × ₹350): ₹700",
+    "[11:37:22 pm]       Integrated Convenience Fee: ₹85",
+    "[11:37:22 pm]       GST (18% on convenience fee): ₹15",
+    "[11:37:22 pm]       ---------------------------------------",
+    "[11:37:22 pm]       TOTAL AMOUNT PAYABLE: ₹800",
+    "[11:37:22 pm] [6/7] ADVISORY & CHECKOUT: Bypassing F&B modal & submitting guest details...",
+    "[11:37:22 pm]       Guest Email: guest.booking@gmail.com",
+    "[11:37:22 pm]       Guest Phone: 9820198201",
+    "[11:37:22 pm] [7/7] FINAL PAYMENT PAGE REACHED:",
+    "[11:37:22 pm] ✅ Staged at Final Payment Options Page! Session ID: BMSSESS_9L0UB1HP6",
+    "[11:37:22 pm]    (Safe stop before credential entry: UPI, Cards, NetBanking, Wallets active)"
+  ]
+}

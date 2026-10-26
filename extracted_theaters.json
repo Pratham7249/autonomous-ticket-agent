@@ -1,0 +1,202 @@
+[
+  {
+    "theaterName": "INOX Megaplex Phoenix Mall of the Millennium Wakad",
+    "totalShowtimes": 2,
+    "showtimes": [
+      {
+        "time": "02:35 PM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      },
+      {
+        "time": "08:00 PM, INSIGNIA",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "E-SQUARE: Xion Mall, Hinjawadi",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "11:00 PM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "Cinepolis: Seasons Mall, Pune",
+    "totalShowtimes": 2,
+    "showtimes": [
+      {
+        "time": "10:00 AM, QSC 7.1",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      },
+      {
+        "time": "03:30 PM, QSC 7.1",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "City Pride: Kothrud",
+    "totalShowtimes": 2,
+    "showtimes": [
+      {
+        "time": "03:00 PM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      },
+      {
+        "time": "11:00 PM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "PVR: Phoenix Market City, Pune",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "01:55 PM, GOLD",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "Abhiruchi City Pride: Sinhagad Road",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "08:15 PM, DOLBY 7.1",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "City Pride, Nyati Plaza: Kharadi",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "06:45 PM, QSC 7.1 RECLINER",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "INOX: Elpro City Square, Chinchwad",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "09:15 AM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "City Pride: Satara Road",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "09:30 AM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "PVR: Icon, The Pavillion Pune",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "09:00 AM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "MovieMax: Amanora Town Centre, Pune(Now Renovated)",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "08:40 PM, Edition-All Recliner",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "City Pride Royal Cinemas: Rahatani",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "10:45 PM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "PVR: Grand Highstreet Mall, Hinjawadi",
+    "totalShowtimes": 1,
+    "showtimes": [
+      {
+        "time": "01:50 PM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "Miraj Cinemas: Spine City Mall, Pune",
+    "totalShowtimes": 3,
+    "showtimes": [
+      {
+        "time": "09:30 AM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      },
+      {
+        "time": "12:30 PM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      },
+      {
+        "time": "06:15 PM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  },
+  {
+    "theaterName": "City Pride: Mangala Cinema",
+    "totalShowtimes": 3,
+    "showtimes": [
+      {
+        "time": "10:15 AM",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      },
+      {
+        "time": "04:45 PM, Newly Opened",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      },
+      {
+        "time": "10:30 PM, Newly Opened",
+        "status": "Available",
+        "priceEstimate": "₹200 - ₹350"
+      }
+    ]
+  }
+]

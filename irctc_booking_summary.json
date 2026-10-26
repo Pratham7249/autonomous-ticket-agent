@@ -1,0 +1,27 @@
+{
+  "platform": "IRCTC",
+  "sessionId": "IRCTCSESS_O7P23JMDN",
+  "bookingId": "IRCTC-7450397",
+  "train": {
+    "number": "12123",
+    "name": "Deccan Queen Express",
+    "departureTime": "07:15 AM",
+    "arrivalTime": "10:25 AM"
+  },
+  "route": {
+    "from": "CSMT",
+    "to": "PUNE",
+    "date": "Tomorrow"
+  },
+  "seats": [
+    "Coach B2: 34 (Lower)",
+    "Coach B2: 35 (Middle)"
+  ],
+  "fare": {
+    "baseFare": 1160,
+    "convenienceFee": 35,
+    "gst": 15,
+    "totalAmountPayable": 1210
+  },
+  "status": "Staged at Payment Gateway"
+}

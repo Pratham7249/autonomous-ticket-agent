@@ -1,0 +1,20 @@
+{
+  "name": "omnibook-ai",
+  "version": "2.0.0",
+  "description": "Autonomous Travel & Cinema Booking Pipeline with Conversational Chatbot, BookMyShow & RedBus Workflows, and Unified Payment Gateway.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "bms": "node index.js",
+    "redbus": "node redbus_playwright.js",
+    "irctc": "node irctc_workflow.js",
+    "test": "echo \"Ready\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.3.0",
+    "playwright-core": "^1.63.0"
+  }
+}

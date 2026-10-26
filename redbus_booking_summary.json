@@ -1,0 +1,79 @@
+{
+  "platform": "RedBus",
+  "sessionId": "RBSESS_ZAUNYFIUI",
+  "timestamp": "2026-10-25T21:15:36.393Z",
+  "route": {
+    "from": "Pune",
+    "to": "Nagpur",
+    "date": "Tomorrow"
+  },
+  "bus": {
+    "id": "RB-PUN-NAG-01",
+    "operator": "Zingbus Premium Express",
+    "busType": "AC Sleeper 2+1 (Multi-Axle)",
+    "departureTime": "07:00 AM",
+    "arrivalTime": "01:30 PM",
+    "duration": "6h 30m",
+    "rating": 4.8
+  },
+  "boardingPoint": "Pune Central Station",
+  "droppingPoint": "Nagpur Main Bus Terminal",
+  "seats": [
+    "L1",
+    "L2"
+  ],
+  "passenger": {
+    "name": "Rahul Sharma",
+    "age": 28,
+    "gender": "Male",
+    "email": "rahul.booking@gmail.com",
+    "mobile": "9820198201"
+  },
+  "fare": {
+    "baseFare": 1300,
+    "perSeatPrice": 650,
+    "convenienceFee": 65,
+    "gst": 68,
+    "totalAmountPayable": 1433,
+    "currency": "INR"
+  },
+  "availablePaymentOptions": [
+    "UPI QR & VPA (Google Pay / PhonePe / Paytm / BHIM)",
+    "Credit & Debit Card (Visa, Mastercard, RuPay)",
+    "Net Banking (SBI, HDFC, ICICI, Axis, Kotak)",
+    "Wallets (Paytm, Amazon Pay, Mobikwik)",
+    "Pay Later (Simpl, LazyPay)"
+  ],
+  "status": "Staged at Unified Payment Options Screen",
+  "logs": [
+    "[2:45:36 am] ====================================================",
+    "[2:45:36 am]          REDBUS AUTONOMOUS BOOKING RUNNER           ",
+    "[2:45:36 am] ====================================================",
+    "[2:45:36 am] 🚩 Origin:          Pune",
+    "[2:45:36 am] 🏁 Destination:     Nagpur",
+    "[2:45:36 am] 📅 Date:            Tomorrow",
+    "[2:45:36 am] 💺 Selected Seats:  L1, L2",
+    "[2:45:36 am] 👤 Passenger:       Rahul Sharma (28y, Male)",
+    "[2:45:36 am] 📧 Guest Contact:   rahul.booking@gmail.com | 9820198201",
+    "[2:45:36 am] ====================================================",
+    "[2:45:36 am] [1/6] SETUP: Initializing RedBus route connector...",
+    "[2:45:36 am] ✅ Found 3 active bus schedules between Pune and Nagpur",
+    "[2:45:36 am] [2/6] OPERATOR: Selected [Zingbus Premium Express] - AC Sleeper 2+1 (Multi-Axle)",
+    "[2:45:36 am]       🕒 Departs: 07:00 AM | ⏱️ Duration: 6h 30m",
+    "[2:45:36 am]       ⭐ Rating: 4.8 / 5.0 (1420 ratings)",
+    "[2:45:36 am] [3/6] SEAT SELECTION: Verifying berth availability on deck...",
+    "[2:45:36 am]       Allocated Berths: [L1, L2]",
+    "[2:45:36 am] [4/6] PRICING & FARE BREAKDOWN:",
+    "[2:45:36 am]       Base Fare (2 seat × ₹650): ₹1300",
+    "[2:45:36 am]       Platform Convenience Fee: ₹65",
+    "[2:45:36 am]       GST (Govt. Taxes): ₹68",
+    "[2:45:36 am]       ---------------------------------------",
+    "[2:45:36 am]       TOTAL PAYABLE: ₹1433",
+    "[2:45:36 am] [5/6] PASSENGER & BOARDING: Binding passenger profile to PNR hold session...",
+    "[2:45:36 am]       Boarding Point: Pune Central Station",
+    "[2:45:36 am]       Dropping Point: Nagpur Main Bus Terminal",
+    "[2:45:36 am] [6/6] CHECKOUT GATEWAY: Safely staging at Unified Payment Gateway...",
+    "[2:45:36 am] ✅ Booking Staged! Gateway Session ID: RBSESS_ZAUNYFIUI",
+    "[2:45:36 am] 📁 Staged booking artifact saved to: D:\\code\\coding_fypro\\timetable\\redbus_booking_summary.json"
+  ]
+}

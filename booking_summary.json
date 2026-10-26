@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-10-25T21:13:08.951Z",
+  "city": "Pune",
+  "movie": "Pehla Pyaar Doosri Baar",
+  "showtime": "02:35 PM",
+  "seatsSelected": 2,
+  "seats": "M-T",
+  "totalAmountPayable": "₹536.64",
+  "availablePaymentOptions": [
+    "Pay by any UPI App",
+    "Debit/Credit Card",
+    "Mobile Wallets",
+    "Gift Voucher",
+    "Net Banking",
+    "Pay Later",
+    "Redeem Points"
+  ],
+  "guestContact": {
+    "email": "guest.booking@gmail.com",
+    "phone": "9820198201"
+  },
+  "finalUrl": "https://in.bookmyshow.com/order-summary/ET00517731/PMPW",
+  "checkoutStatus": "Staged at Final Payment Options Page (Guest Sign-Up/Login Completed, Safe Halt before Payment)"
+}
